@@ -2,6 +2,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -22,98 +23,26 @@ time, mark, audio, video {
   font: inherit;
   vertical-align: baseline;
 }
-
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
 }
-
 body {
   line-height: 1;
 }
-
 ol, ul {
   list-style: none;
 }
-
 blockquote, q {
   quotes: none;
 }
-
 blockquote:before, blockquote:after,
 q:before, q:after {
-  content: "";
+  content: '';
   content: none;
 }
-
 table {
   border-collapse: collapse;
   border-spacing: 0;
-}
-
-* {
-  box-sizing: border-box;
-  color: #9FC5E8;
-}
-
-html {
-  height: 100%;
-  font-family: "Share";
-}
-
-body {
-  height: 100%;
-  background-color: #001C31;
-}
-
-div#root {
-  height: 100%;
-}
-div#container {
-  padding: 5px;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-}
-div#left-container {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-div#left-container #map-container {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-div#left-container #logs-container {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-div#right-container {
-  flex-grow: 0;
-  display: flex;
-  flex-direction: row;
-}
-div#right-container #leaderboard-container {
-  flex-grow: 0;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-div .title {
-  border: 1px solid #00A6EE;
-  width: 200px;
-  margin: 5px;
-  padding: 10px;
-  font-size: 24px;
-  font-style: italic;
-  text-align: center;
-  border-image: url("") 27 space;
-}
-div .content {
-  flex-grow: 1;
-  border: 1px solid #00A6EE;
-  margin: 5px;
 }
