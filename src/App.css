@@ -85,14 +85,19 @@ div#left-container #map-container {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  height: 500px;
 }
 div#left-container #logs-container {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
+div#left-container #logs-container .content {
+  background-color: #002c4a;
+  overflow: scroll;
+}
 div#right-container {
-  flex-grow: 0;
+  flex-grow: 0.2;
   display: flex;
   flex-direction: row;
 }
@@ -101,6 +106,7 @@ div#right-container #leaderboard-container {
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 100%;
 }
 div#right-container #leaderboard-container .content {
   overflow: scroll;
@@ -121,4 +127,23 @@ div .content {
 }
 div .no-border {
   border: none;
+}
+
+#logs-table tr td {
+  padding: 5px;
+}
+
+.expose {
+  font-weight: bold;
+  color: #FF6338;
+}
+
+.intercept {
+  font-weight: bold;
+  color: #FF9F1C;
+}
+
+.exchange {
+  font-weight: bold;
+  color: #7DD36B;
 }

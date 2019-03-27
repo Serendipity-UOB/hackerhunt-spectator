@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import './App.css'
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import axios from 'axios'
+import './App.css'
 import Player from './Player.js'
+import Zone from './Zone.js'
 
 class App extends Component {
 
@@ -9,8 +11,8 @@ class App extends Component {
         super()
         this.state = {
             leaderboard: [],
-            zones: 'default',
-            logs: 'default'
+            zones: [],
+            logs: []
         }
     }
 
@@ -28,11 +30,14 @@ class App extends Component {
                 const data = response.data;
                 this.setState({ leaderboard : data.leaderboard });
                 this.setState({ zones : data.zones });
-                const newLogs = this.state.logs.concat(data.logs);
-                this.setState({ logs : newLogs });
-                console.log(this.state.leaderboard);
-                console.log(typeof this.state.leaderboard)
+                this.setState({ logs : this.state.logs.concat(data.logs) });
+                if (data.logs.length > 0) this.updateScroll();
             })
+    }
+
+    updateScroll(){
+        var element = document.getElementById("logs");
+        element.scrollTop = element.scrollHeight;
     }
 
     render () {
@@ -41,11 +46,26 @@ class App extends Component {
                 <div id='left-container'>
                     <div id='map-container'>
                         <div className='title'>Map</div>
-                        <div className='content'></div>
+                        <div className='content'>
+                            {this.state.zones.map((zone, key) =>
+                                <Zone zone={zone} key={key}/>
+                            )}
+                        </div>
                     </div>
                     <div id='logs-container'>
                         <div className='title'>Log</div>
-                        <div className='content'></div>
+                        <div className='content' id='logs'>
+                            <table id='logs-table'>
+                                <tbody>
+                                    {this.state.logs.map((log, key) =>
+                                        <tr key={key}>
+                                            <td><span>{log.time}</span></td>
+                                            <td><span>{ ReactHtmlParser(log.message) }</span></td>
+                                        </tr>
+                                    )}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div id='right-container'>

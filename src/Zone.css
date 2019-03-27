@@ -1,0 +1,27 @@
+.zone-border {
+  display: table;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  background-image: radial-gradient(black, #00000000 60%);
+}
+.zone-border .zone {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+.zone-border .zone div {
+  border: 1px solid black;
+  height: 40px;
+  width: 40px;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+}
+.zone-border .zone div span {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}

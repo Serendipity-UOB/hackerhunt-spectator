@@ -9,6 +9,7 @@
   flex-direction: row;
   align-items: stretch;
   //padding: 5px;
+  font-size: 1.5rem;
 
   & .player-card-left {
     flex-grow: 0;
@@ -16,7 +17,7 @@
     & div {
       display: table;
       height: 100%;
-      padding: 4px;
+      padding: 6px;
 
       & span {
         display: table-cell;
@@ -24,7 +25,7 @@
         text-align: center;
         border: 1px solid white;
         border-radius: 50%;
-        $circle-size: 35px;
+        $circle-size: 60px;
         height: $circle-size;
         width: $circle-size;
         color: #ffffff;
