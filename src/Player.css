@@ -1,0 +1,62 @@
+.player-card {
+  border: 1px solid #00A6EE;
+  background-color: #002c4a;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+.player-card .player-card-left {
+  flex-grow: 0;
+}
+.player-card .player-card-left div {
+  display: table;
+  height: 100%;
+  padding: 4px;
+}
+.player-card .player-card-left div span {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+  color: #ffffff;
+}
+.player-card .player-card-right {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+.player-card .player-card-right .player-name-container {
+  flex-grow: 1;
+}
+.player-card .player-card-right .player-name-container .player-name-border {
+  background: linear-gradient(to right, #002c4a, #00A6EE);
+  padding-bottom: 1px;
+  height: 100%;
+  display: table;
+  width: 100%;
+}
+.player-card .player-card-right .player-name-container .player-name-border .player-name {
+  background-color: #002c4a;
+  height: 100%;
+  display: table-cell;
+  vertical-align: middle;
+  padding: 3px;
+}
+.player-card .player-card-right .player-reputation-container {
+  flex-grow: 1;
+}
+.player-card .player-card-right .player-reputation-container .player-reputation {
+  display: table;
+  width: 100%;
+  height: 100%;
+  padding: 3px;
+}
+.player-card .player-card-right .player-reputation-container .player-reputation span {
+  display: table-cell;
+  vertical-align: middle;
+}

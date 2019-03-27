@@ -102,6 +102,9 @@ div#right-container #leaderboard-container {
   flex-direction: column;
   height: 100%;
 }
+div#right-container #leaderboard-container .content {
+  overflow: scroll;
+}
 div .title {
   border: 1px solid #00A6EE;
   width: 200px;
@@ -110,10 +113,12 @@ div .title {
   font-size: 24px;
   font-style: italic;
   text-align: center;
-  border-image: url("") 27 space;
 }
 div .content {
   flex-grow: 1;
   border: 1px solid #00A6EE;
   margin: 5px;
+}
+div .no-border {
+  border: none;
 }

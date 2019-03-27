@@ -1,12 +1,6 @@
 @import 'reset';
-
-$dark-blue: #001C31;
-$mid-blue: #00A6EE;
-$light-blue: #9FC5E8;
-
-$background-color: $dark-blue;
-$border-color: $mid-blue;
-$font-color: $light-blue;
+@import 'variables';
+@import 'colors';
 
 $font: 'Share';
 
@@ -66,36 +60,31 @@ div {
       display: flex;
       flex-direction: column;
       height: 100%;
+
+      & .content {
+        overflow:scroll;
+      }
     }
   }
 
   .title {
     border: 1px solid $border-color;
     width: 200px;
-    margin: 5px;
+    margin: $margin;
     padding: 10px;
     font-size: 24px;
     font-style: italic;
     text-align: center;
-    border-image: url("") 27 space;
-
-    //&::before {
-    //  content: '';
-    //  //position: absolute;
-    //  top: 0; right: 0;
-    //  border-top: 80px solid $dark-blue;
-    //  border-right: 80px solid red;
-    //  width: 0;
-    //}
-    //border-corner-shape: bevel;
-    //border-radius: 50%;
-
   }
 
   .content {
     flex-grow: 1;
     border: 1px solid $border-color;
-    margin: 5px;
+    margin: $margin;
+  }
+
+  .no-border {
+    border: none;
   }
 
 }
