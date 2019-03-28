@@ -84,7 +84,7 @@ div#left-container {
 div#left-container #map-container {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  flex-grow: 0;
   height: 500px;
 }
 div#left-container #logs-container {

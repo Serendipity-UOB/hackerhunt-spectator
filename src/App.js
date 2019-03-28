@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios'
 import './App.css'
 import Player from './Player.js'
 import Zone from './Zone.js'
+import Map from './Map.js'
 
 class App extends Component {
 
@@ -47,9 +48,10 @@ class App extends Component {
                     <div id='map-container'>
                         <div className='title'>Map</div>
                         <div className='content'>
-                            {this.state.zones.map((zone, key) =>
-                                <Zone zone={zone} key={key}/>
-                            )}
+                            <Map/>
+                            {/*{this.state.zones.map((zone, key) =>*/}
+                                {/*<Zone zone={zone} key={key}/>*/}
+                            {/*)}*/}
                         </div>
                     </div>
                     <div id='logs-container'>
