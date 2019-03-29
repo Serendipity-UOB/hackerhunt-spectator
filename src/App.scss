@@ -26,10 +26,9 @@ div {
   }
 
   &#container {
-    padding: 5px;
-    height: 100%;
     display: flex;
     flex-direction: row;
+    height: 100%;
   }
 
   &#left-container {
@@ -40,48 +39,37 @@ div {
       & #map-container {
         display: flex;
         flex-direction: column;
-        //flex-grow: 0;
-        //height: 500px;
+        flex-grow: 1;
 
         & #map-content {
-          //height: auto;
-          //flex-grow: 0;
-          //display: block;
-          //overflow: visible;
           border: none;
-        }
-
-        & .content {
-          //flex-grow: 1;
+          flex-grow: 1;
         }
       }
 
       & #logs-container {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
+        flex-grow: 0;
 
         & .content {
           background-color: $foreground-color;
           overflow: scroll;
+          min-height: 50px;
         }
       }
   }
 
   &#right-container {
-    flex-grow: 0.2;
+    flex-grow: 0;
     display: flex;
-    flex-direction: row;
 
     & #leaderboard-container {
-      flex-grow: 0;
-      display: flex;
+      flex-grow: 1;
       flex-direction: column;
-      height: 100%;
-      width: 100%;
+      display: flex;
 
       & .content {
-        overflow:scroll;
+        overflow: scroll;
+        flex-grow: 1;
       }
     }
   }
@@ -97,7 +85,6 @@ div {
   }
 
   .content {
-    flex-grow: 1;
     border: 1px solid $border-color;
     margin: $margin;
   }

@@ -46,17 +46,16 @@ class App extends Component {
             <div id='container'>
                 <div id='left-container'>
                     <div id='map-container'>
-                        <div className='title'>Map</div>
+                        <div className='title' id='map-title'>Map</div>
                         <div className='content' id='map-content'>
                             <Map/>
-                            {/*{this.state.zones.map((zone, key) =>*/}
-                                {/*<Zone zone={zone} key={key}/>*/}
-                            {/*)}*/}
+                            {/*Map*/}
                         </div>
                     </div>
                     <div id='logs-container'>
                         <div className='title'>Log</div>
                         <div className='content' id='logs'>
+                            {/*Logs*/}
                             <table id='logs-table'>
                                 <tbody>
                                     {this.state.logs.map((log, key) =>

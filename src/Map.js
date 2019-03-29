@@ -5,20 +5,28 @@ import Snap from 'snapsvg-cjs'
 class Map extends Component {
 
     constructor () {
-        super()
+        super();
         this.state = {}
     }
 
     drawMap = () => {
-        console.log("drawMap")
-        let width = document.getElementById('map').clientWidth
-        let height = 0.45*width
-        document.getElementById('map').style.height = '' + height + '';
-        document.getElementById('map-content').style.height = '' + height + '';
-        console.log(document.getElementById('map').clientHeight)
-        console.log(width)
-        this.forceUpdate()
-        console.log('draw map');
+        // Set the dimensions
+        let width = document.getElementById('map-content').clientWidth;
+        let height = document.getElementById('map-content').clientHeight;
+        if (height > 0.45*width) {
+            height = 0.45*width;
+        } else {
+            width = height/0.45;
+        }
+
+        // Draw the border
+        document.getElementById('map-border').setAttribute('points',
+            0 + ', ' + 0 +',' +
+            width + ', ' + 0 +',' +
+            width + ', ' + height +',' +
+            0 + ', ' + height);
+
+        // Draw the map
         document.getElementById('map-polygon').setAttribute('points',
             0*width + ', ' + 0*height +',' +
             0.11*width + ', ' + 0*height +',' +
@@ -37,30 +45,27 @@ class Map extends Component {
             0.25*width + ', ' + 0.63*height +',' +
             0.11*width + ', ' + 0.63*height +',' +
             0*width + ', ' + 0.63*height);
-        document.getElementById('map-border').setAttribute('points',
-            0 + ', ' + 0 +',' +
-            width + ', ' + 0 +',' +
-            width + ', ' + height +',' +
-            0 + ', ' + height);
+        let pillarRadius = 0.02*width;
+        document.getElementById('map-pillar-1').setAttribute('r', '' + pillarRadius);
+        document.getElementById('map-pillar-1').setAttribute('cx', '' + 0.8*width);
+        document.getElementById('map-pillar-1').setAttribute('cy', '' + 0.63*height);
+        let pillar2_cx = 0.7*width;
+        let pillar2_cy = 0.63*height;
+        document.getElementById('map-pillar-2').setAttribute('r', '' + pillarRadius);
+        document.getElementById('map-pillar-2').setAttribute('cx', '' + pillar2_cx);
+        document.getElementById('map-pillar-2').setAttribute('cy', '' + pillar2_cy);
+        document.getElementById('map-pillar-2').style.strokeDasharray = 2 * Math.PI * pillarRadius;
+        document.getElementById('map-pillar-2').style.strokeDashoffset = 0.25 * 2 * Math.PI * pillarRadius;
+        document.getElementById('map-pillar-2').setAttribute('transform', 'rotate(180 ' + pillar2_cx + ' '+ pillar2_cy + ')');
     }
 
     componentDidMount () {
         window.addEventListener('resize', this.drawMap)
         let s = Snap('#map')
-        let border = s.polygon()
-            .attr({
-                id: 'map-border',
-                stroke: '#00A6EE',
-                fill: 'none',
-                points: ''
-            });
-        let main = s.polygon()
-            .attr({
-                id: 'map-polygon',
-                fill: '#002c4a',
-                stroke: '#00A6EE',
-                points: ''
-            });
+        s.polygon().attr({id: 'map-border', stroke: '#00A6EE', fill: '#001C31', points: ''});
+        s.polygon().attr({id: 'map-polygon', fill: '#002c4a', stroke: '#00A6EE', points: ''});
+        s.circle().attr({id: 'map-pillar-1', fill: '#001C31', stroke: '#00A6EE', cx: '0', cy: '0', r: '0'});
+        s.circle().attr({id: 'map-pillar-2', fill: '#001C31', stroke: '#00A6EE', cx: '0', cy: '0', r: '0',});
         this.drawMap();
     }
 
@@ -70,7 +75,9 @@ class Map extends Component {
 
     render () {
         return (
-            <svg id='map'/>
+            <div id='map-wrapper'>
+                <svg id='map'></svg>
+            </div>
         )
     }
 
