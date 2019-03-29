@@ -35,25 +35,38 @@ div {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    overflow: scroll;
+    min-width: 210px;
 
       & #map-container {
         display: flex;
         flex-direction: column;
-        flex-grow: 1;
+        flex-grow: 0;
 
         & #map-content {
           border: none;
-          flex-grow: 1;
+          flex-grow: 0;
+          display: inline-block;
+          width: auto;
+          //border: 1px solid red;
+
+          & #map-wrapper {
+            //display: inline-block;
+            //width: auto;
+          }
         }
       }
 
       & #logs-container {
-        flex-grow: 0;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
 
         & .content {
           background-color: $foreground-color;
           overflow: scroll;
           min-height: 50px;
+          flex-grow: 1;
         }
       }
   }
@@ -61,6 +74,7 @@ div {
   &#right-container {
     flex-grow: 0;
     display: flex;
+    min-width: 270px;
 
     & #leaderboard-container {
       flex-grow: 1;

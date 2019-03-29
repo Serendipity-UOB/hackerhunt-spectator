@@ -3,7 +3,6 @@ import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios'
 import './App.css'
 import Player from './Player.js'
-import Zone from './Zone.js'
 import Map from './Map.js'
 
 class App extends Component {
@@ -17,28 +16,29 @@ class App extends Component {
         }
     }
 
-    componentDidMount() {
-        this.timer = setInterval(()=> this.getItems(), 1000);
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.timer)
-    }
-
     getItems() {
-        axios.get('http://localhost:8080/spectator')
+        axios.get('http://localhost:8080/spectatorTest')
             .then(response => {
                 const data = response.data;
                 this.setState({ leaderboard : data.leaderboard });
                 this.setState({ zones : data.zones });
                 this.setState({ logs : this.state.logs.concat(data.logs) });
                 if (data.logs.length > 0) this.updateScroll();
+                console.log(this.state.zones)
             })
     }
 
     updateScroll(){
         var element = document.getElementById("logs");
         element.scrollTop = element.scrollHeight;
+    }
+
+    componentDidMount() {
+        this.timer = setInterval(()=> this.getItems(), 1000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timer)
     }
 
     render () {
@@ -48,7 +48,7 @@ class App extends Component {
                     <div id='map-container'>
                         <div className='title' id='map-title'>Map</div>
                         <div className='content' id='map-content'>
-                            <Map/>
+                            <Map zones={this.state.zones}/>
                             {/*Map*/}
                         </div>
                     </div>
