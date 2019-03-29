@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import './Map.css'
 import Snap from 'snapsvg-cjs'
 
+const Color = require('color');
+
 class Map extends Component {
 
     constructor () {
@@ -90,8 +92,132 @@ class Map extends Component {
         // Render updated zones
         this.state.zones.forEach(function(zone){
             console.log(zone);
-            s.circle().attr({id: 'zone-'+zone.zone_id, cx: ''+(zone.x*width), cy: ''+(zone.y*height), r: ''+(0.02*width)});
-
+            let color = Color('rgb(' + zone.colour.red + ', ' + zone.colour.green + ', ' + zone.colour.blue + ')');
+            let g = s.gradient('r(0.5, 0.5, 0.5)'+color.hex()+'-rgba(1, 1, 1, 0)');
+            let flagRadius = 0.02*width;
+            let glow = s.circle().attr({id: 'zone-colour' + zone.zone_id,
+                cx: '' + (zone.x*width),
+                cy: '' + (zone.y*height),
+                r: '' + (0.08*width*zone.size),
+                fill: g,
+                stroke: 'none'});
+            let mask = s.circle().attr({id: 'zone-mask' + zone.zone_id,
+                cx: '' + (zone.x*width),
+                cy: '' + (zone.y*height),
+                r: '' + flagRadius,
+                fill: '#fff',
+                stroke: '#000'});
+            if (zone.zone_name === 'Italy') {
+                console.log('Italy');
+                let white = s.polygon().attr({id: 'zone-italy-white', stroke: 'none', fill: '#f2f2f2', points:
+                    (zone.x*width - flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
+                    (zone.x*width + flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
+                    (zone.x*width + flagRadius) + ', ' + (zone.y*height + flagRadius) + ',' +
+                    (zone.x*width - flagRadius) + ', ' + (zone.y*height + flagRadius)
+                });
+                let green = s.polygon().attr({id: 'zone-italy-green', stroke: 'none', fill: '#009246', points:
+                    (zone.x*width - flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
+                    (zone.x*width - 0.4*flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
+                    (zone.x*width - 0.4*flagRadius) + ', ' + (zone.y*height + flagRadius) + ',' +
+                    (zone.x*width - flagRadius) + ', ' + (zone.y*height + flagRadius)
+                });
+                let red = s.polygon().attr({id: 'zone-italy-red', stroke: 'none', fill: '#ce2b37', points:
+                    (zone.x*width + 0.4*flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
+                    (zone.x*width + flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
+                    (zone.x*width + flagRadius) + ', ' + (zone.y*height + flagRadius) + ',' +
+                    (zone.x*width + 0.4*flagRadius) + ', ' + (zone.y*height + flagRadius)
+                });
+                let g = s.g(white, green, red).attr({ id: 'zone-italy-mask', mask: mask });
+            } else if (zone.zone_name === 'Sweden') {
+                console.log('Sweden');
+                let blue = s.polygon().attr({id: 'zone-sweden-blue', stroke: 'none', fill: '#006AA7', points:
+                    (zone.x*width - flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
+                    (zone.x*width + flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
+                    (zone.x*width + flagRadius) + ', ' + (zone.y*height + flagRadius) + ',' +
+                    (zone.x*width - flagRadius) + ', ' + (zone.y*height + flagRadius)
+                });
+                let yellow_v = s.polygon().attr({id: 'zone-sweden-yellow_v', stroke: 'none', fill: '#FECC00', points:
+                    (zone.x*width - 0.5*flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
+                    (zone.x*width) + ', ' + (zone.y*height - flagRadius) + ',' +
+                    (zone.x*width) + ', ' + (zone.y*height + flagRadius) + ',' +
+                    (zone.x*width - 0.5*flagRadius) + ', ' + (zone.y*height + flagRadius)
+                });
+                let yellow_h = s.polygon().attr({id: 'zone-sweden-yellow_h', stroke: 'none', fill: '#FECC00', points:
+                    (zone.x*width - flagRadius) + ', ' + (zone.y*height - 0.25*flagRadius) + ',' +
+                    (zone.x*width + flagRadius) + ', ' + (zone.y*height - 0.25*flagRadius) + ',' +
+                    (zone.x*width + flagRadius) + ', ' + (zone.y*height + 0.25*flagRadius) + ',' +
+                    (zone.x*width - flagRadius) + ', ' + (zone.y*height + 0.25*flagRadius)
+                });
+                let g = s.g(blue, yellow_v, yellow_h).attr({ id: 'zone-sweden-mask', mask: mask });
+            } else if (zone.zone_name === 'Switzerland') {
+                console.log('Switzerland');
+                let red = s.polygon().attr({id: 'zone-switzerland-red', stroke: 'none', fill: '#D52B1E', points:
+                    (zone.x*width - flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
+                    (zone.x*width + flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
+                    (zone.x*width + flagRadius) + ', ' + (zone.y*height + flagRadius) + ',' +
+                    (zone.x*width - flagRadius) + ', ' + (zone.y*height + flagRadius)
+                });
+                let white_h = s.polygon().attr({id: 'zone-switzerland-white_h', stroke: 'none', fill: '#FFFFFF', points:
+                    (zone.x*width - 0.6*flagRadius) + ', ' + (zone.y*height - 0.2*flagRadius) + ',' +
+                    (zone.x*width + 0.6*flagRadius) + ', ' + (zone.y*height - 0.2*flagRadius) + ',' +
+                    (zone.x*width + 0.6*flagRadius) + ', ' + (zone.y*height + 0.2*flagRadius) + ',' +
+                    (zone.x*width - 0.6*flagRadius) + ', ' + (zone.y*height + 0.2*flagRadius)
+                });
+                let white_v = s.polygon().attr({id: 'zone-switzerland-white_h', stroke: 'none', fill: '#FFFFFF', points:
+                    (zone.x*width - 0.2*flagRadius) + ', ' + (zone.y*height - 0.6*flagRadius) + ',' +
+                    (zone.x*width + 0.2*flagRadius) + ', ' + (zone.y*height - 0.6*flagRadius) + ',' +
+                    (zone.x*width + 0.2*flagRadius) + ', ' + (zone.y*height + 0.6*flagRadius) + ',' +
+                    (zone.x*width - 0.2*flagRadius) + ', ' + (zone.y*height + 0.6*flagRadius)
+                });
+                let g = s.g(red, white_h, white_v).attr({ id: 'zone-switzerland-mask', mask: mask });
+            } else if (zone.zone_name === 'Colombia') {
+                console.log('Colombia');
+                let yellow = s.polygon().attr({id: 'zone-colombia-yellow', stroke: 'none', fill: '#FCD116', points:
+                    (zone.x*width - flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
+                    (zone.x*width + flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
+                    (zone.x*width + flagRadius) + ', ' + (zone.y*height + flagRadius) + ',' +
+                    (zone.x*width - flagRadius) + ', ' + (zone.y*height + flagRadius)
+                });
+                let blue = s.polygon().attr({id: 'zone-colombia-blue', stroke: 'none', fill: '#003893', points:
+                    (zone.x*width - flagRadius) + ', ' + (zone.y*height) + ',' +
+                    (zone.x*width + flagRadius) + ', ' + (zone.y*height) + ',' +
+                    (zone.x*width + flagRadius) + ', ' + (zone.y*height + 0.5*flagRadius) + ',' +
+                    (zone.x*width - flagRadius) + ', ' + (zone.y*height + 0.5*flagRadius)
+                });
+                let red = s.polygon().attr({id: 'zone-colombia-red', stroke: 'none', fill: '#CE1126', points:
+                    (zone.x*width - flagRadius) + ', ' + (zone.y*height + 0.5*flagRadius) + ',' +
+                    (zone.x*width + flagRadius) + ', ' + (zone.y*height + 0.5*flagRadius) + ',' +
+                    (zone.x*width + flagRadius) + ', ' + (zone.y*height + flagRadius) + ',' +
+                    (zone.x*width - flagRadius) + ', ' + (zone.y*height + flagRadius)
+                });
+                let g = s.g(yellow, blue, red).attr({ id: 'zone-colombia-mask', mask: mask });
+            } else if (zone.zone_name === 'Czech Republic') {
+                console.log('Czech Republic');
+                let white = s.polygon().attr({id: 'zone-czechrepublic-white', stroke: 'none', fill: '#FFFFFF', points:
+                    (zone.x*width - flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
+                    (zone.x*width + flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
+                    (zone.x*width + flagRadius) + ', ' + (zone.y*height) + ',' +
+                    (zone.x*width - flagRadius) + ', ' + (zone.y*height)
+                });
+                let red = s.polygon().attr({id: 'zone-czechrepublic-red', stroke: 'none', fill: '#D7141A', points:
+                    (zone.x*width - flagRadius) + ', ' + (zone.y*height) + ',' +
+                    (zone.x*width + flagRadius) + ', ' + (zone.y*height) + ',' +
+                    (zone.x*width + flagRadius) + ', ' + (zone.y*height + flagRadius) + ',' +
+                    (zone.x*width - flagRadius) + ', ' + (zone.y*height + flagRadius)
+                });
+                let blue = s.polygon().attr({id: 'zone-czechrepublic-blue', stroke: 'none', fill: '#11457E', points:
+                    (zone.x*width - flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
+                    (zone.x*width - flagRadius) + ', ' + (zone.y*height + flagRadius) + ',' +
+                    (zone.x*width) + ', ' + (zone.y*height)
+                });
+                let g = s.g(white, red, blue).attr({ id: 'zone-czechrepublic-mask', mask: mask });
+            }
+            let border = s.circle().attr({id: 'zone-border' + zone.zone_id,
+                cx: '' + (zone.x*width),
+                cy: '' + (zone.y*height),
+                r: '' + flagRadius,
+                fill: 'none',
+                stroke: ''+color});
         });
 
 

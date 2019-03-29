@@ -17,7 +17,7 @@ class App extends Component {
     }
 
     getItems() {
-        axios.get('http://localhost:8080/spectatorTest')
+        axios.get('http://localhost:8080/spectator')
             .then(response => {
                 const data = response.data;
                 this.setState({ leaderboard : data.leaderboard });
