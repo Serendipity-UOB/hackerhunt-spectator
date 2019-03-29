@@ -47,7 +47,7 @@ class App extends Component {
                 <div id='left-container'>
                     <div id='map-container'>
                         <div className='title'>Map</div>
-                        <div className='content'>
+                        <div className='content' id='map-content'>
                             <Map/>
                             {/*{this.state.zones.map((zone, key) =>*/}
                                 {/*<Zone zone={zone} key={key}/>*/}

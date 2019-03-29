@@ -9,41 +9,59 @@ class Map extends Component {
         this.state = {}
     }
 
-    resize = () => {
-        console.log("resize")
+    drawMap = () => {
+        console.log("drawMap")
+        let width = document.getElementById('map').clientWidth
+        let height = 0.45*width
+        document.getElementById('map').style.height = '' + height + '';
+        document.getElementById('map-content').style.height = '' + height + '';
         console.log(document.getElementById('map').clientHeight)
-        console.log(document.getElementById('map').clientWidth)
+        console.log(width)
         this.forceUpdate()
-
+        console.log('draw map');
+        document.getElementById('map-polygon').setAttribute('points',
+            0*width + ', ' + 0*height +',' +
+            0.11*width + ', ' + 0*height +',' +
+            0.11*width + ', ' + 0.4*height +',' +
+            0.7*width + ', ' + 0.4*height +',' +
+            0.7*width + ', ' + 0*height +',' +
+            0.8*width + ', ' + 0*height +',' +
+            0.8*width + ', ' + 0.4*height +',' +
+            1*width + ', ' + 0.4*height +',' +
+            1*width + ', ' + 1*height +',' +
+            0.7*width + ', ' + 1*height +',' +
+            0.7*width + ', ' + 0.63*height +',' +
+            0.32*width + ', ' + 0.63*height +',' +
+            0.32*width + ', ' + 1*height +',' +
+            0.25*width + ', ' + 1*height +',' +
+            0.25*width + ', ' + 0.63*height +',' +
+            0.11*width + ', ' + 0.63*height +',' +
+            0*width + ', ' + 0.63*height);
+        document.getElementById('map-border').setAttribute('points',
+            0 + ', ' + 0 +',' +
+            width + ', ' + 0 +',' +
+            width + ', ' + height +',' +
+            0 + ', ' + height);
     }
 
     componentDidMount () {
-        console.log(document.getElementById('map-wrapper').clientHeight)
-        window.addEventListener('resize', this.resize)
+        window.addEventListener('resize', this.drawMap)
         let s = Snap('#map')
-        var main = s.polygon(0, 0,
-                             100, 0,
-                             100, 150,
-                             500, 150,
-                             500, 0,
-                             590, 0,
-                             590, 150,
-                             730, 150,
-                             730, 370,
-                             500, 370,
-                             500, 250,
-                             250, 250,
-                             250, 370,
-                             200, 370,
-                             200, 250,
-                             100, 250,
-                             0, 250)
+        let border = s.polygon()
             .attr({
+                id: 'map-border',
+                stroke: '#00A6EE',
+                fill: 'none',
+                points: ''
+            });
+        let main = s.polygon()
+            .attr({
+                id: 'map-polygon',
                 fill: '#002c4a',
                 stroke: '#00A6EE',
-                vectoreffect: 'non-scaling-stroke'
+                points: ''
             });
-
+        this.drawMap();
     }
 
     componentWillUnmount() {
@@ -52,17 +70,7 @@ class Map extends Component {
 
     render () {
         return (
-            <div id='map-wrapper'>
-                <svg id='map'/>
-                {/*<svg id='map' width='100%' height='100%' viewBox="0 0 100 100" preserveAspectRatio="none">*/}
-                    {/*<rect x='40%' y='40%' width='25%' height='25%' />*/}
-
-                    {/*<polygon points="0,0 0,100 30,20 30,0" />*/}
-                    {/*<polygon points="30,0 30,20 60,0 60,0" />*/}
-                    {/*<polygon points="60,0 60,0 90,30 90,0" />*/}
-                {/*</svg>*/}
-                {/*<svg id='map'/>*/}
-            </div>
+            <svg id='map'/>
         )
     }
 

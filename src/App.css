@@ -84,8 +84,9 @@ div#left-container {
 div#left-container #map-container {
   display: flex;
   flex-direction: column;
-  flex-grow: 0;
-  height: 500px;
+}
+div#left-container #map-container #map-content {
+  border: none;
 }
 div#left-container #logs-container {
   flex-grow: 1;
