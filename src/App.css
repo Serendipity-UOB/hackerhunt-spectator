@@ -74,6 +74,7 @@ div#container {
   display: flex;
   flex-direction: row;
   height: 100%;
+  padding: 5px;
 }
 div#left-container {
   flex-grow: 1;
