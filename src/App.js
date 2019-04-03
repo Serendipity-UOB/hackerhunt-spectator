@@ -25,9 +25,8 @@ class App extends Component {
                 this.setState({ zones : data.zones });
                 this.setState({ logs : this.state.logs.concat(data.logs) });
                 if (data.logs.length > 0) this.updateScroll();
-                // console.log(this.state.zones)
                 this.state.zones.forEach(function(zone) {
-                    console.log(zone.zone_name + ', colour ' + zone.colour.red + ' ' + zone.colour.green + ' ' + zone.colour.blue + ', size ' + zone.size);
+                    // console.log(zone.zone_name + ', colour ' + zone.colour.red + ' ' + zone.colour.green + ' ' + zone.colour.blue + ', size ' + zone.size);
                 });
             })
     }

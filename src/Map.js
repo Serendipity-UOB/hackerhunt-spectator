@@ -13,7 +13,6 @@ class Map extends Component {
 
 
     drawMap = () => {
-        // console.log("drawMap");
 
         let s = Snap('#map');
 
@@ -28,8 +27,6 @@ class Map extends Component {
         document.getElementById('map').setAttribute('viewBox', '0 0 ' + width + ' ' + height + '');
         document.getElementById('map-content').setAttribute('height', '' + height);
         document.getElementById('map-content').setAttribute('width', '' + width);
-        // document.getElementById('map').setAttribute('width', '' + width);
-
 
         // Draw the border
         document.getElementById('map-border').setAttribute('points',
@@ -59,20 +56,6 @@ class Map extends Component {
             0.11*width + ', ' + 0.63*height +',' +
             0*width + ', ' + 0.63*height);
 
-        // let pillarRadius = 0.02*width;
-        // document.getElementById('map-pillar-1').setAttribute('r', '' + pillarRadius);
-        // document.getElementById('map-pillar-1').setAttribute('cx', '' + 0.8*width);
-        // document.getElementById('map-pillar-1').setAttribute('cy', '' + 0.63*height);
-
-        // let pillar2_cx = 0.7*width;
-        // let pillar2_cy = 0.63*height;
-        // document.getElementById('map-pillar-2').setAttribute('r', '' + pillarRadius);
-        // document.getElementById('map-pillar-2').setAttribute('cx', '' + pillar2_cx);
-        // document.getElementById('map-pillar-2').setAttribute('cy', '' + pillar2_cy);
-        // document.getElementById('map-pillar-2').style.strokeDasharray = 2 * Math.PI * pillarRadius;
-        // document.getElementById('map-pillar-2').style.strokeDashoffset = 0.25 * 2 * Math.PI * pillarRadius;
-        // document.getElementById('map-pillar-2').setAttribute('transform', 'rotate(180 ' + pillar2_cx + ' '+ pillar2_cy + ')');
-
         let labRadius = 0.08*width;
         let lab_cx = 0.25*width - labRadius;
         let lab_cy = 0.63*height + labRadius;
@@ -84,22 +67,20 @@ class Map extends Component {
         document.getElementById('map-lab').setAttribute('transform', 'rotate(-90 ' + lab_cx + ' '+ lab_cy + ')');
 
         // Remove existing zones
-        // console.log(document.querySelectorAll('*[id^="zone-"]'));
         document.querySelectorAll('*[id^="zone-"]').forEach(function(elem){
             elem.parentNode.removeChild(elem);
         });
 
         // Render updated zones
         this.state.zones.forEach(function(zone){
-            // console.log(zone);
             let color = Color('rgb(' + zone.colour.red + ', ' + zone.colour.green + ', ' + zone.colour.blue + ')');
-            let g = s.gradient('r(0.5, 0.5, 0.5)'+color.hex()+'-rgba(1, 1, 1, 0)');
+            let glow = s.gradient('r(0.5, 0.5, 0.5)'+color.hex()+'-rgba(1, 1, 1, 0)');
             let flagRadius = 0.02*width;
-            let glow = s.circle().attr({id: 'zone-colour' + zone.zone_id,
+            s.circle().attr({id: 'zone-colour' + zone.zone_id,
                 cx: '' + (zone.x*width),
                 cy: '' + (zone.y*height),
                 r: '' + (0.06*width*zone.size + flagRadius),
-                fill: g,
+                fill: glow,
                 stroke: 'none'});
             let mask = s.circle().attr({id: 'zone-mask' + zone.zone_id,
                 cx: '' + (zone.x*width),
@@ -108,7 +89,6 @@ class Map extends Component {
                 fill: '#fff',
                 stroke: '#000'});
             if (zone.zone_name === 'Italy') {
-                // console.log('Italy');
                 let white = s.polygon().attr({id: 'zone-italy-white', stroke: 'none', fill: '#E6F2F8', points:
                     (zone.x*width - flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
                     (zone.x*width + flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
@@ -127,9 +107,8 @@ class Map extends Component {
                     (zone.x*width + flagRadius) + ', ' + (zone.y*height + flagRadius) + ',' +
                     (zone.x*width + 0.4*flagRadius) + ', ' + (zone.y*height + flagRadius)
                 });
-                let g = s.g(white, green, red).attr({ id: 'zone-italy-mask', mask: mask });
+                s.g(white, green, red).attr({ id: 'zone-italy-mask', mask: mask });
             } else if (zone.zone_name === 'Sweden') {
-                // console.log('Sweden');
                 let blue = s.polygon().attr({id: 'zone-sweden-blue', stroke: 'none', fill: '#4080A5', points:
                     (zone.x*width - flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
                     (zone.x*width + flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
@@ -148,9 +127,8 @@ class Map extends Component {
                     (zone.x*width + flagRadius) + ', ' + (zone.y*height + 0.25*flagRadius) + ',' +
                     (zone.x*width - flagRadius) + ', ' + (zone.y*height + 0.25*flagRadius)
                 });
-                let g = s.g(blue, yellow_v, yellow_h).attr({ id: 'zone-sweden-mask', mask: mask });
+                s.g(blue, yellow_v, yellow_h).attr({ id: 'zone-sweden-mask', mask: mask });
             } else if (zone.zone_name === 'Switzerland') {
-                // console.log('Switzerland');
                 let red = s.polygon().attr({id: 'zone-switzerland-red', stroke: 'none', fill: '#C6373B', points:
                     (zone.x*width - flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
                     (zone.x*width + flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
@@ -169,9 +147,8 @@ class Map extends Component {
                     (zone.x*width + 0.2*flagRadius) + ', ' + (zone.y*height + 0.6*flagRadius) + ',' +
                     (zone.x*width - 0.2*flagRadius) + ', ' + (zone.y*height + 0.6*flagRadius)
                 });
-                let g = s.g(red, white_h, white_v).attr({ id: 'zone-switzerland-mask', mask: mask });
+                s.g(red, white_h, white_v).attr({ id: 'zone-switzerland-mask', mask: mask });
             } else if (zone.zone_name === 'Colombia') {
-                // console.log('Colombia');
                 let yellow = s.polygon().attr({id: 'zone-colombia-yellow', stroke: 'none', fill: '#F7D033', points:
                     (zone.x*width - flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
                     (zone.x*width + flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
@@ -190,9 +167,8 @@ class Map extends Component {
                     (zone.x*width + flagRadius) + ', ' + (zone.y*height + flagRadius) + ',' +
                     (zone.x*width - flagRadius) + ', ' + (zone.y*height + flagRadius)
                 });
-                let g = s.g(yellow, blue, red).attr({ id: 'zone-colombia-mask', mask: mask });
+                s.g(yellow, blue, red).attr({ id: 'zone-colombia-mask', mask: mask });
             } else if (zone.zone_name === 'Czech Republic') {
-                // console.log('Czech Republic');
                 let white = s.polygon().attr({id: 'zone-czechrepublic-white', stroke: 'none', fill: '#E6F2F8', points:
                     (zone.x*width - flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
                     (zone.x*width + flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
@@ -210,9 +186,9 @@ class Map extends Component {
                     (zone.x*width - flagRadius) + ', ' + (zone.y*height + flagRadius) + ',' +
                     (zone.x*width) + ', ' + (zone.y*height)
                 });
-                let g = s.g(white, red, blue).attr({ id: 'zone-czechrepublic-mask', mask: mask });
+                s.g(white, red, blue).attr({ id: 'zone-czechrepublic-mask', mask: mask });
             }
-            let border = s.circle().attr({id: 'zone-border' + zone.zone_id,
+            s.circle().attr({id: 'zone-border' + zone.zone_id,
                 cx: '' + (zone.x*width),
                 cy: '' + (zone.y*height),
                 r: '' + flagRadius,
