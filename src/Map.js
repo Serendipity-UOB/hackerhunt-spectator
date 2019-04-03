@@ -13,7 +13,7 @@ class Map extends Component {
 
 
     drawMap = () => {
-        console.log("drawMap");
+        // console.log("drawMap");
 
         let s = Snap('#map');
 
@@ -84,21 +84,21 @@ class Map extends Component {
         document.getElementById('map-lab').setAttribute('transform', 'rotate(-90 ' + lab_cx + ' '+ lab_cy + ')');
 
         // Remove existing zones
-        console.log(document.querySelectorAll('*[id^="zone-"]'));
+        // console.log(document.querySelectorAll('*[id^="zone-"]'));
         document.querySelectorAll('*[id^="zone-"]').forEach(function(elem){
             elem.parentNode.removeChild(elem);
         });
 
         // Render updated zones
         this.state.zones.forEach(function(zone){
-            console.log(zone);
+            // console.log(zone);
             let color = Color('rgb(' + zone.colour.red + ', ' + zone.colour.green + ', ' + zone.colour.blue + ')');
             let g = s.gradient('r(0.5, 0.5, 0.5)'+color.hex()+'-rgba(1, 1, 1, 0)');
             let flagRadius = 0.02*width;
             let glow = s.circle().attr({id: 'zone-colour' + zone.zone_id,
                 cx: '' + (zone.x*width),
                 cy: '' + (zone.y*height),
-                r: '' + (0.08*width*zone.size),
+                r: '' + (0.06*width*1 + flagRadius),
                 fill: g,
                 stroke: 'none'});
             let mask = s.circle().attr({id: 'zone-mask' + zone.zone_id,
@@ -108,7 +108,7 @@ class Map extends Component {
                 fill: '#fff',
                 stroke: '#000'});
             if (zone.zone_name === 'Italy') {
-                console.log('Italy');
+                // console.log('Italy');
                 let white = s.polygon().attr({id: 'zone-italy-white', stroke: 'none', fill: '#f2f2f2', points:
                     (zone.x*width - flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
                     (zone.x*width + flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
@@ -129,7 +129,7 @@ class Map extends Component {
                 });
                 let g = s.g(white, green, red).attr({ id: 'zone-italy-mask', mask: mask });
             } else if (zone.zone_name === 'Sweden') {
-                console.log('Sweden');
+                // console.log('Sweden');
                 let blue = s.polygon().attr({id: 'zone-sweden-blue', stroke: 'none', fill: '#006AA7', points:
                     (zone.x*width - flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
                     (zone.x*width + flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
@@ -150,7 +150,7 @@ class Map extends Component {
                 });
                 let g = s.g(blue, yellow_v, yellow_h).attr({ id: 'zone-sweden-mask', mask: mask });
             } else if (zone.zone_name === 'Switzerland') {
-                console.log('Switzerland');
+                // console.log('Switzerland');
                 let red = s.polygon().attr({id: 'zone-switzerland-red', stroke: 'none', fill: '#D52B1E', points:
                     (zone.x*width - flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
                     (zone.x*width + flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
@@ -171,7 +171,7 @@ class Map extends Component {
                 });
                 let g = s.g(red, white_h, white_v).attr({ id: 'zone-switzerland-mask', mask: mask });
             } else if (zone.zone_name === 'Colombia') {
-                console.log('Colombia');
+                // console.log('Colombia');
                 let yellow = s.polygon().attr({id: 'zone-colombia-yellow', stroke: 'none', fill: '#FCD116', points:
                     (zone.x*width - flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
                     (zone.x*width + flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
@@ -192,7 +192,7 @@ class Map extends Component {
                 });
                 let g = s.g(yellow, blue, red).attr({ id: 'zone-colombia-mask', mask: mask });
             } else if (zone.zone_name === 'Czech Republic') {
-                console.log('Czech Republic');
+                // console.log('Czech Republic');
                 let white = s.polygon().attr({id: 'zone-czechrepublic-white', stroke: 'none', fill: '#FFFFFF', points:
                     (zone.x*width - flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
                     (zone.x*width + flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
