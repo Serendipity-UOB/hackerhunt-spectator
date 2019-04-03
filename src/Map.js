@@ -98,7 +98,7 @@ class Map extends Component {
             let glow = s.circle().attr({id: 'zone-colour' + zone.zone_id,
                 cx: '' + (zone.x*width),
                 cy: '' + (zone.y*height),
-                r: '' + (0.06*width*1 + flagRadius),
+                r: '' + (0.06*width*zone.size + flagRadius),
                 fill: g,
                 stroke: 'none'});
             let mask = s.circle().attr({id: 'zone-mask' + zone.zone_id,
