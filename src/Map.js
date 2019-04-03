@@ -11,7 +11,6 @@ class Map extends Component {
         this.state = {zones: []}
     }
 
-
     drawMap = () => {
 
         let s = Snap('#map');
@@ -73,13 +72,27 @@ class Map extends Component {
 
         // Render updated zones
         this.state.zones.forEach(function(zone){
-            let color = Color('rgb(' + zone.colour.red + ', ' + zone.colour.green + ', ' + zone.colour.blue + ')');
+            let amount = (zone.colour + 1) / 2;
+
+            let redHsv = Color('#F4462C').hsv();
+            let greenHsv = Color('#51B73A').hsv();
+
+            let hDiff = greenHsv.object().h - redHsv.object().h;
+            let sDiff = greenHsv.object().s - redHsv.object().s;
+            let vDiff = greenHsv.object().v - redHsv.object().v;
+
+            // INTERPOLATE COLOUR
+            let color = Color.hsv(redHsv.object().h + amount * hDiff,
+                                     redHsv.object().s + amount * sDiff,
+                                     redHsv.object().v + amount * vDiff);
+
             let glow = s.gradient('r(0.5, 0.5, 0.5)'+color.hex()+'-rgba(1, 1, 1, 0)');
             let flagRadius = 0.02*width;
             s.circle().attr({id: 'zone-colour' + zone.zone_id,
                 cx: '' + (zone.x*width),
                 cy: '' + (zone.y*height),
-                r: '' + (0.06*width*zone.size + flagRadius),
+                // r: '' + (0.06*width*zone.size + flagRadius),
+                r: '' + (0.06*width*1 + flagRadius),
                 fill: glow,
                 stroke: 'none'});
             let mask = s.circle().attr({id: 'zone-mask' + zone.zone_id,
