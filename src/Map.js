@@ -199,6 +199,15 @@ class Map extends Component {
                     (zone.x*width) + ', ' + (zone.y*height)
                 });
                 s.g(white, red, blue).attr({ id: 'zone-czechrepublic-mask', mask: mask });
+            } else if (zone.zone_name === 'UN') {
+                let blue = s.polygon().attr({id: 'zone-colombia-yellow', stroke: 'none', fill: '#002c4a', points:
+                    (zone.x*width - flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
+                    (zone.x*width + flagRadius) + ', ' + (zone.y*height - flagRadius) + ',' +
+                    (zone.x*width + flagRadius) + ', ' + (zone.y*height + flagRadius) + ',' +
+                    (zone.x*width - flagRadius) + ', ' + (zone.y*height + flagRadius)
+                });
+                let logo = s.image("un.png", zone.x*width - flagRadius*0.8, zone.y*height - flagRadius*0.8, flagRadius*1.6, flagRadius*1.6);
+                s.g(blue, logo).attr({ id: 'zone-unitednations-mask', mask: mask });
             }
             s.circle().attr({id: 'zone-border' + zone.zone_id,
                 cx: '' + (zone.x*width),
