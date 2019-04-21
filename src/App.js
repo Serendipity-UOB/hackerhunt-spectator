@@ -4,7 +4,7 @@ import axios from 'axios'
 import './App.css'
 import Player from './Player.js'
 import Map from './Map.js'
-import Countdown from "./Countdown";
+import Flag from './Flag.js'
 
 class App extends Component {
 
@@ -26,6 +26,7 @@ class App extends Component {
                 this.setState({ leaderboard : data.leaderboard });
                 this.setState({ zones : data.zones });
                 this.setState({ logs : this.state.logs.concat(data.logs) });
+                // console.log(this.state.logs);
                 if (data.logs.length > 0) this.updateScroll();
                 this.setState({ time : data.time });
                 if (data.time.minutes < 1 && data.time.seconds <= 30) {
@@ -68,6 +69,7 @@ class App extends Component {
                                     {this.state.logs.map((log, key) =>
                                         <tr key={key}>
                                             <td><span>{log.time}</span></td>
+                                            <td><Flag zone={log.zone_name} /></td>
                                             <td><span>{ ReactHtmlParser(log.message) }</span></td>
                                         </tr>
                                     )}

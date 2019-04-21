@@ -122,7 +122,9 @@ div {
 
 #logs-table {
   & tr td {
-    padding: 5px;
+    padding: 5px 10px;
+    vertical-align: middle;
+    font-size: 1.4em;
   }
 }
 
