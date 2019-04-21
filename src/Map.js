@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
-import './Map.css'
-import Snap from 'snapsvg-cjs'
+import React, { Component } from 'react';
+import Snap from 'snapsvg-cjs';
 
 const Color = require('color');
 
@@ -91,8 +90,8 @@ class Map extends Component {
             s.circle().attr({id: 'zone-colour' + zone.zone_id,
                 cx: '' + (zone.x*width),
                 cy: '' + (zone.y*height),
-                // r: '' + (0.06*width*zone.size + flagRadius),
-                r: '' + (0.06*width*1 + flagRadius),
+                r: '' + (0.2*width*zone.size + (flagRadius*3)),
+                // r: '' + (0.06*width*1 + flagRadius),
                 fill: glow,
                 stroke: 'none'});
             let mask = s.circle().attr({id: 'zone-mask' + zone.zone_id,

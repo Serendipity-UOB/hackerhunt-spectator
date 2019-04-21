@@ -74,7 +74,7 @@ div#container {
   display: flex;
   flex-direction: row;
   height: 100%;
-  padding: 5px;
+  padding: 20px;
 }
 div#left-container {
   flex-grow: 1;
@@ -82,6 +82,7 @@ div#left-container {
   flex-direction: column;
   overflow: scroll;
   min-width: 210px;
+  margin-right: 10px;
 }
 div#left-container #map-container {
   display: flex;
@@ -95,6 +96,7 @@ div#left-container #map-container #map-content {
   width: auto;
 }
 div#left-container #logs-container {
+  margin-top: 10px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -109,6 +111,7 @@ div#right-container {
   flex-grow: 0;
   display: flex;
   min-width: 270px;
+  flex-direction: column;
 }
 div#right-container #leaderboard-container {
   flex-grow: 1;
@@ -118,6 +121,15 @@ div#right-container #leaderboard-container {
 div#right-container #leaderboard-container .content {
   overflow: scroll;
   flex-grow: 1;
+}
+div#right-container #countdown-container {
+  margin: 5px;
+  padding: 5px;
+  font-size: 7em;
+  text-align: center;
+}
+div#right-container #countdown-container .red {
+  color: #FF6338;
 }
 div .title {
   border: 1px solid #00A6EE;
@@ -153,4 +165,55 @@ div .no-border {
 .exchange {
   font-weight: bold;
   color: #77D365;
+}
+
+@keyframes pulseAnimation {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-o-keyframes pulseAnimation {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-moz-keyframes pulseAnimation {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes pulseAnimation {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.pulse {
+  -webkit-animation: pulseAnimation 1s infinite;
+  -moz-animation: pulseAnimation 1s infinite;
+  -o-animation: pulseAnimation 1s infinite;
+  animation: pulseAnimation 1s infinite;
 }
