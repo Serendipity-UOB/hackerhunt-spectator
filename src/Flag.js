@@ -9,10 +9,11 @@ class Flag extends Component {
     }
 
     componentDidMount() {
-        console.log("componentDidMount");
+        // console.log(this.props);
         let width = 30;
         let height = width;
-        let zone = this.props.zone
+        let zone = this.props.zone;
+        let color = this.props.color;
         if (zone === 'Czech Republic') zone = 'Czech';
 
         document.querySelectorAll('.flag'+zone).forEach(function(flag) {
@@ -31,8 +32,6 @@ class Flag extends Component {
                 fill: '#ffffff',
                 stroke: 'none'});
 
-            //
-            console.log(zone);
             if (zone === 'Italy') {
                 let white = s.polygon().attr({stroke: 'none', fill: '#E6F2F8', points:
                     (0) + ', ' + (0) + ',' +
@@ -139,7 +138,7 @@ class Flag extends Component {
                 cy: '' + width/2,
                 r: '' + flagRadius,
                 fill: 'none',
-                stroke: '#00A6EE'});
+                stroke: color});
 
         });
     }

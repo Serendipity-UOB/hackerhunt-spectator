@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios'
 import './App.css'
 import Player from './Player.js'
 import Map from './Map.js'
-import Flag from './Flag.js'
+import Log from './Log.js'
 
 class App extends Component {
 
@@ -22,6 +21,7 @@ class App extends Component {
         // axios.get('https://serendipity-game-controller.herokuapp.com/spectator')
         axios.get('http://localhost:8080/spectator')
             .then(response => {
+                // console.log(response);
                 const data = response.data;
                 this.setState({ leaderboard : data.leaderboard });
                 this.setState({ zones : data.zones });
@@ -61,17 +61,11 @@ class App extends Component {
                         </div>
                     </div>
                     <div id='logs-container'>
-                        {/*<div className='title'>Log</div>*/}
                         <div className='content' id='logs'>
-                            {/*Logs*/}
                             <table id='logs-table'>
                                 <tbody>
                                     {this.state.logs.map((log, key) =>
-                                        <tr key={key}>
-                                            <td><span>{log.time}</span></td>
-                                            <td><Flag zone={log.zone_name} /></td>
-                                            <td><span>{ ReactHtmlParser(log.message) }</span></td>
-                                        </tr>
+                                        <Log key={key} log={log}/>
                                     )}
                                 </tbody>
                             </table>
