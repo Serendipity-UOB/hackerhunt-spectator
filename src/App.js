@@ -29,7 +29,7 @@ class App extends Component {
                 const data = response.data;
                 switch (response.status) {
                     case 200: // CURRENT GAME
-                        console.log('200');
+                        // console.log('200');
                         this.setState({ leaderboard : data.leaderboard });
                         this.setState({ zones : data.zones });
                         this.setState({ logs : this.state.logs.concat(data.logs) });
@@ -43,7 +43,7 @@ class App extends Component {
                         this.setState({ countdown_message : 'TIME REMAINING' });
                         break;
                     case 204: // NO GAME (Also just at start of game)
-                        console.log('204');
+                        // console.log('204');
                         if (document.getElementById('countdown').classList.contains('red')) {
                             document.getElementById('countdown').classList.remove('red');
                         }
@@ -52,7 +52,7 @@ class App extends Component {
                         }
                         break;
                     case 206: // COUNTDOWN TO START OF GAME
-                        console.log('206');
+                        // console.log('206');
                         // console.log(response);
                         this.setState({ leaderboard : data.leaderboard });
                         this.setState({ time : data.time });
