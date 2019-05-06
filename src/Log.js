@@ -13,15 +13,15 @@ class Log extends Component {
 
     componentWillMount() {
         switch (this.props.log.interaction) {
-            case 'exchange':
-                this.setState({color: '#77D365'});
-                break;
-            case 'intercept':
-                this.setState({color: '#FF9F1C'});
-                break;
-            case 'expose':
-                this.setState({color: '#FF6338'});
-                break;
+            // case 'exchange':
+            //     this.setState({color: '#77D365'});
+            //     break;
+            // case 'intercept':
+            //     this.setState({color: '#FF9F1C'});
+            //     break;
+            // case 'expose':
+            //     this.setState({color: '#FF6338'});
+            //     break;
             default:
                 this.setState({color: '#00A6EE'});
                 break;

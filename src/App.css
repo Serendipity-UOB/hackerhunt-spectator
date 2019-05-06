@@ -113,11 +113,13 @@ div#right-container {
   display: flex;
   min-width: 270px;
   flex-direction: column;
+  height: 100%;
 }
 div#right-container #leaderboard-container {
   flex-grow: 1;
   flex-direction: column;
   display: flex;
+  overflow: scroll;
 }
 div#right-container #leaderboard-container .content {
   overflow: scroll;
@@ -131,6 +133,9 @@ div#right-container #countdown-container {
 }
 div#right-container #countdown-container .red {
   color: #FF6338;
+}
+div#right-container #countdown-container #countdown-message {
+  font-size: 0.3em;
 }
 div .title {
   border: 1px solid #00A6EE;

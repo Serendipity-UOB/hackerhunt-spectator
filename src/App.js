@@ -13,7 +13,11 @@ class App extends Component {
             leaderboard: [],
             zones: [],
             logs: [],
-            time: ''
+            time: {
+                minutes: '0',
+                seconds: '0'
+            },
+            countdown_message: ''
         }
     }
 
@@ -23,15 +27,43 @@ class App extends Component {
             .then(response => {
                 // console.log(response);
                 const data = response.data;
-                this.setState({ leaderboard : data.leaderboard });
-                this.setState({ zones : data.zones });
-                this.setState({ logs : this.state.logs.concat(data.logs) });
-                // console.log(this.state.logs);
-                if (data.logs.length > 0) this.updateScroll();
-                this.setState({ time : data.time });
-                if (data.time.minutes < 1 && data.time.seconds <= 30) {
-                    document.getElementById('countdown').classList.add('red');
-                    document.getElementById('countdown-container').classList.add('pulse');
+                switch (response.status) {
+                    case 200: // CURRENT GAME
+                        console.log('200');
+                        this.setState({ leaderboard : data.leaderboard });
+                        this.setState({ zones : data.zones });
+                        this.setState({ logs : this.state.logs.concat(data.logs) });
+                        // console.log(this.state.logs);
+                        if (data.logs.length > 0) this.updateScroll();
+                        this.setState({ time : data.time });
+                        if (data.time.minutes < 1 && data.time.seconds <= 30) {
+                            document.getElementById('countdown').classList.add('red');
+                            document.getElementById('countdown-container').classList.add('pulse');
+                        }
+                        this.setState({ countdown_message : 'TIME REMAINING' });
+                        break;
+                    case 204: // NO GAME (Also just at start of game)
+                        console.log('204');
+                        if (document.getElementById('countdown').classList.contains('red')) {
+                            document.getElementById('countdown').classList.remove('red');
+                        }
+                        if (document.getElementById('countdown-container').classList.contains('pulse')) {
+                            document.getElementById('countdown-container').classList.remove('pulse');
+                        }
+                        break;
+                    case 206: // COUNTDOWN TO START OF GAME
+                        console.log('206');
+                        // console.log(response);
+                        this.setState({ leaderboard : data.leaderboard });
+                        this.setState({ time : data.time });
+                        this.setState({ logs : [] });
+                        this.setState({ countdown_message : 'TIME TILL START' });
+                        this.setState({ zones : [] });
+                        // this.setState({ zones : data.zones });
+                        break;
+                    default:
+                        console.log(response);
+                        break;
                 }
             })
     }
@@ -76,6 +108,9 @@ class App extends Component {
                     <div id='countdown-container'>
                         <div id='countdown'>
                             {this.state.time.minutes <= 9 ? '0' : ''}{this.state.time.minutes > 0 ? this.state.time.minutes : '0'}:{this.state.time.seconds <= 9 ? '0' : ''}{this.state.time.seconds > 0 ? this.state.time.seconds : '0'}
+                        </div>
+                        <div id='countdown-message'>
+                            {this.state.countdown_message}
                         </div>
                     </div>
                     <div id='leaderboard-container'>
