@@ -57,7 +57,7 @@ class App extends Component {
                         this.setState({ leaderboard : data.leaderboard });
                         this.setState({ time : data.time });
                         this.setState({ logs : [] });
-                        this.setState({ countdown_message : 'TIME TILL START' });
+                        this.setState({ countdown_message : 'NEXT GAME IN' });
                         this.setState({ zones : [] });
                         // this.setState({ zones : data.zones });
                         break;
