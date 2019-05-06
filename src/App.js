@@ -22,8 +22,8 @@ class App extends Component {
     }
 
     getItems() {
-        // axios.get('https://serendipity-game-controller.herokuapp.com/spectator')
-        axios.get('http://localhost:8080/spectator')
+        axios.get('https://serendipity-game-controller.herokuapp.com/spectator')
+        // axios.get('http://localhost:8080/spectator')
             .then(response => {
                 // console.log(response);
                 const data = response.data;
