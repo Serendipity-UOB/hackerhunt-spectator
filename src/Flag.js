@@ -14,7 +14,6 @@ class Flag extends Component {
         let height = width;
         let zone = this.props.zone;
         let color = this.props.color;
-        if (zone === 'Czech Republic') zone = 'Czech';
         zone = zone.replace(/\s+/g, '-').toLowerCase();
 
         document.querySelectorAll('.flag'+zone).forEach(function(flag) {
@@ -42,9 +41,7 @@ class Flag extends Component {
     render () {
         return (
             <div>
-                <svg className={'flag'+this.props.zone}>
-
-                </svg>
+                <svg className={'flag'+this.props.zone}></svg>
             </div>
         )
     }
