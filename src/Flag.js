@@ -12,9 +12,8 @@ class Flag extends Component {
         // console.log(this.props);
         let width = 30;
         let height = width;
-        let zone = this.props.zone;
+        let zone = this.props.zone.replace(/\s+/g, '-').toLowerCase();
         let color = this.props.color;
-        zone = zone.replace(/\s+/g, '-').toLowerCase();
 
         document.querySelectorAll('.flag'+zone).forEach(function(flag) {
             flag.setAttribute('viewBox', '0 0 ' + width + ' ' + height + '');
@@ -41,7 +40,9 @@ class Flag extends Component {
     render () {
         return (
             <div>
-                <svg className={'flag'+this.props.zone}></svg>
+                <svg className={'flag'+this.props.zone.replace(/\s+/g, '-').toLowerCase()}>
+
+                </svg>
             </div>
         )
     }
