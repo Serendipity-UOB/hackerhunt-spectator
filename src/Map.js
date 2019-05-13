@@ -17,10 +17,10 @@ class Map extends Component {
         // Set the dimensions
         let width = document.getElementById('map-content').clientWidth;
         let height = document.getElementById('map-content').clientHeight;
-        if (height > 0.45*width) {
-            height = 0.45*width;
+        if (height > 0.55*width) {
+            height = 0.55*width;
         } else {
-            width = height/0.45;
+            width = height/0.55;
         }
         document.getElementById('map').setAttribute('viewBox', '0 0 ' + width + ' ' + height + '');
         document.getElementById('map-content').setAttribute('height', '' + height);
@@ -54,7 +54,7 @@ class Map extends Component {
             0.11*width + ', ' + 0.63*height +',' +
             0*width + ', ' + 0.63*height);
 
-        let labRadius = 0.1*width;
+        let labRadius = 0.08*width;
         let lab_cx = 0.25*width - labRadius;
         let lab_cy = 0.63*height + labRadius;
         document.getElementById('map-lab').setAttribute('r', '' + labRadius);
@@ -82,7 +82,7 @@ class Map extends Component {
             let color = Color.hsv(redHsv.object().h + amount * hDiff,
                                      redHsv.object().s + amount * sDiff,
                                      redHsv.object().v + amount * vDiff);
-            let flagRadius = 0.03*width;
+            let flagRadius = 0.035*width;
 
             // DISPLAY ZONE PULSE
             s.circle().attr({
@@ -93,7 +93,7 @@ class Map extends Component {
                 fill: '' + color,
                 stroke: 'none'})
                 .animate({
-                    r: (0.08 * width * zone.size + flagRadius),
+                    r: (0.1 * width * zone.size + flagRadius),
                     fill: '' + color.fade(1)},
                     600);
 
