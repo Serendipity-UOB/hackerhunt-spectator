@@ -1,6 +1,6 @@
 .player-card {
-  border: 1px solid #9FC5E8;
-  background-color: #053759;
+  border: 1px solid #C9E5FF;
+  background-color: #0C4870;
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
@@ -35,14 +35,14 @@
   flex-grow: 1;
 }
 .player-card .player-card-right .player-name-container .player-name-border {
-  background: linear-gradient(to right, #053759, #9FC5E8);
+  background: linear-gradient(to right, #0C4870, #C9E5FF);
   padding-bottom: 1px;
   height: 100%;
   display: table;
   width: 100%;
 }
 .player-card .player-card-right .player-name-container .player-name-border .player-name {
-  background-color: #053759;
+  background-color: #0C4870;
   height: 100%;
   display: table-cell;
   vertical-align: middle;

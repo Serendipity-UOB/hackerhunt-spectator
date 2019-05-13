@@ -54,7 +54,7 @@ table {
 
 * {
   box-sizing: border-box;
-  color: #9FC5E8;
+  color: #C9E5FF;
 }
 
 html {
@@ -103,7 +103,7 @@ div#left-container #logs-container {
   overflow: hidden;
 }
 div#left-container #logs-container .content {
-  background-color: #053759;
+  background-color: #0C4870;
   min-height: 50px;
   flex-grow: 1;
   overflow: scroll;
@@ -138,7 +138,7 @@ div#right-container #countdown-container #countdown-message {
   font-size: 0.25em;
 }
 div .title {
-  border: 1px solid #9FC5E8;
+  border: 1px solid #C9E5FF;
   width: 200px;
   margin: 5px;
   padding: 10px;
@@ -147,7 +147,7 @@ div .title {
   text-align: center;
 }
 div .content {
-  border: 1px solid #9FC5E8;
+  border: 1px solid #C9E5FF;
   margin: 5px;
 }
 div .no-border {
