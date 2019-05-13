@@ -74,7 +74,7 @@ class Map extends Component {
 
             // CALCULATE COLOUR
             let amount = (zone.colour + 1) / 2;
-            let redHsv = Color('#F4462C').hsv();
+            let redHsv = Color('#FF6A56').hsv();
             let greenHsv = Color('#51B73A').hsv();
             let hDiff = greenHsv.object().h - redHsv.object().h;
             let sDiff = greenHsv.object().s - redHsv.object().s;

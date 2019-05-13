@@ -132,7 +132,7 @@ div#right-container #countdown-container {
   text-align: center;
 }
 div#right-container #countdown-container .red {
-  color: #FF6338;
+  color: #FF6A56;
 }
 div#right-container #countdown-container #countdown-message {
   font-size: 0.25em;
@@ -162,7 +162,7 @@ div .no-border {
 
 .expose {
   font-weight: bold;
-  color: #FF6338;
+  color: #FF6A56;
 }
 
 .intercept {
