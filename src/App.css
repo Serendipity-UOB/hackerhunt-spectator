@@ -103,7 +103,7 @@ div#left-container #logs-container {
   overflow: hidden;
 }
 div#left-container #logs-container .content {
-  background-color: #002c4a;
+  background-color: #053759;
   min-height: 50px;
   flex-grow: 1;
   overflow: scroll;

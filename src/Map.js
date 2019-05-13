@@ -54,7 +54,7 @@ class Map extends Component {
             0.11*width + ', ' + 0.63*height +',' +
             0*width + ', ' + 0.63*height);
 
-        let labRadius = 0.08*width;
+        let labRadius = 0.1*width;
         let lab_cx = 0.25*width - labRadius;
         let lab_cy = 0.63*height + labRadius;
         document.getElementById('map-lab').setAttribute('r', '' + labRadius);
@@ -93,7 +93,7 @@ class Map extends Component {
                 fill: '' + color,
                 stroke: 'none'})
                 .animate({
-                    r: (0.07 * width * zone.size + flagRadius),
+                    r: (0.08 * width * zone.size + flagRadius),
                     fill: '' + color.fade(1)},
                     600);
 
@@ -123,9 +123,9 @@ class Map extends Component {
     componentDidMount () {
         window.addEventListener('resize', this.drawMap);
         let s = Snap('#map');
-        s.polygon().attr({id: 'map-border', stroke: '#00A6EE', fill: '#9FC5E8', points: ''});
-        s.polygon().attr({id: 'map-polygon', fill: '#002c4a', stroke: '#00A6EE', points: ''});
-        s.circle().attr({id: 'map-lab', fill: '#9FC5E8', stroke: '#00A6EE', cx: '0', cy: '0', r: '0'});
+        s.polygon().attr({id: 'map-border', stroke: '#9FC5E8', fill: '#001C31', points: ''});
+        s.polygon().attr({id: 'map-polygon', fill: '#053759', stroke: '#9FC5E8', points: ''});
+        s.circle().attr({id: 'map-lab', fill: '#001C31', stroke: '#9FC5E8', cx: '0', cy: '0', r: '0'});
         this.drawMap(s);
     }
 
