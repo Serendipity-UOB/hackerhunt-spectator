@@ -111,7 +111,7 @@ div#left-container #logs-container .content {
 div#right-container {
   flex-grow: 0;
   display: flex;
-  min-width: 270px;
+  min-width: 240px;
   flex-direction: column;
   height: 100%;
 }
@@ -128,7 +128,7 @@ div#right-container #leaderboard-container .content {
 div#right-container #countdown-container {
   margin: 5px;
   padding: 5px;
-  font-size: 7em;
+  font-size: 6em;
   text-align: center;
 }
 div#right-container #countdown-container .red {
@@ -155,9 +155,9 @@ div .no-border {
 }
 
 #logs-table tr td {
-  padding: 5px 10px;
+  padding: 4px 10px;
   vertical-align: middle;
-  font-size: 1.4em;
+  font-size: 1.5em;
 }
 
 .expose {

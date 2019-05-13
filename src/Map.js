@@ -123,9 +123,9 @@ class Map extends Component {
     componentDidMount () {
         window.addEventListener('resize', this.drawMap);
         let s = Snap('#map');
-        s.polygon().attr({id: 'map-border', stroke: '#00A6EE', fill: '#001C31', points: ''});
+        s.polygon().attr({id: 'map-border', stroke: '#00A6EE', fill: '#9FC5E8', points: ''});
         s.polygon().attr({id: 'map-polygon', fill: '#002c4a', stroke: '#00A6EE', points: ''});
-        s.circle().attr({id: 'map-lab', fill: '#001C31', stroke: '#00A6EE', cx: '0', cy: '0', r: '0'});
+        s.circle().attr({id: 'map-lab', fill: '#9FC5E8', stroke: '#00A6EE', cx: '0', cy: '0', r: '0'});
         this.drawMap(s);
     }
 

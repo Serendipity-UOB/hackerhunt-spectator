@@ -72,7 +72,7 @@ div {
   &#right-container {
     flex-grow: 0;
     display: flex;
-    min-width: 270px;
+    min-width: 240px;
     flex-direction: column;
     height: 100%;
 
@@ -92,7 +92,7 @@ div {
       //border: 1px solid $border-color;
       margin: 5px;
       padding: 5px;
-      font-size: 7em;
+      font-size: 6em;
       text-align: center;
       //color: $border-color;
 
@@ -129,9 +129,9 @@ div {
 
 #logs-table {
   & tr td {
-    padding: 5px 10px;
+    padding: 4px 10px;
     vertical-align: middle;
-    font-size: 1.4em;
+    font-size: 1.5em;
   }
 }
 
