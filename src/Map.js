@@ -95,7 +95,7 @@ class Map extends Component {
                 .animate({
                     r: (0.08 * width * zone.size + flagRadius),
                     fill: '' + color.fade(1)},
-                    800);
+                    400);
 
             // DISPLAY FLAG
             let fileName = zone.zone_name.replace(/\s+/g, '-').toLowerCase() + '.png';
