@@ -13,7 +13,6 @@ class Map extends Component {
     drawMap = () => {
 
         let s = Snap('#map');
-        let mina;
 
         // Set the dimensions
         let width = document.getElementById('map-content').clientWidth;
