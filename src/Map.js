@@ -13,6 +13,7 @@ class Map extends Component {
     drawMap = () => {
 
         let s = Snap('#map');
+        let mina;
 
         // Set the dimensions
         let width = document.getElementById('map-content').clientWidth;
@@ -82,16 +83,20 @@ class Map extends Component {
             let color = Color.hsv(redHsv.object().h + amount * hDiff,
                                      redHsv.object().s + amount * sDiff,
                                      redHsv.object().v + amount * vDiff);
-            let glow = s.gradient('r(0.5, 0.5, 0.5)'+color.hex()+'-rgba(1, 1, 1, 0)');
             let flagRadius = 0.02*width;
 
-            // DISPLAY ZONE GLOW
-            s.circle().attr({id: 'zone-colour' + zone.zone_id,
-                cx: '' + (zone.x*width),
-                cy: '' + (zone.y*height),
-                r: '' + (0.2*width*zone.size + (flagRadius*3)),
-                fill: glow,
-                stroke: 'none'});
+            // DISPLAY ZONE PULSE
+            s.circle().attr({
+                id: 'zone-colour' + zone.zone_id,
+                cx: '' + (zone.x * width),
+                cy: '' + (zone.y * height),
+                r: '' + flagRadius,
+                fill: '' + color,
+                stroke: 'none'})
+                .animate({
+                    r: (0.08 * width * zone.size + flagRadius),
+                    fill: '' + color.fade(1)},
+                    800);
 
             // DISPLAY FLAG
             let fileName = zone.zone_name.replace(/\s+/g, '-').toLowerCase() + '.png';
@@ -122,8 +127,6 @@ class Map extends Component {
         s.polygon().attr({id: 'map-border', stroke: '#00A6EE', fill: '#001C31', points: ''});
         s.polygon().attr({id: 'map-polygon', fill: '#002c4a', stroke: '#00A6EE', points: ''});
         s.circle().attr({id: 'map-lab', fill: '#001C31', stroke: '#00A6EE', cx: '0', cy: '0', r: '0'});
-        // s.circle().attr({id: 'map-pillar-1', fill: '#001C31', stroke: '#00A6EE', cx: '0', cy: '0', r: '0'});
-        // s.circle().attr({id: 'map-pillar-2', fill: '#001C31', stroke: '#00A6EE', cx: '0', cy: '0', r: '0',});
         this.drawMap(s);
     }
 
