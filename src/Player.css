@@ -1,5 +1,5 @@
 .player-card {
-  border: 1px solid #00A6EE;
+  border: 1px solid #9FC5E8;
   background-color: #002c4a;
   margin-bottom: 10px;
   display: flex;
@@ -35,7 +35,7 @@
   flex-grow: 1;
 }
 .player-card .player-card-right .player-name-container .player-name-border {
-  background: linear-gradient(to right, #002c4a, #00A6EE);
+  background: linear-gradient(to right, #002c4a, #9FC5E8);
   padding-bottom: 1px;
   height: 100%;
   display: table;

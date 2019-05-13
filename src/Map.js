@@ -82,7 +82,7 @@ class Map extends Component {
             let color = Color.hsv(redHsv.object().h + amount * hDiff,
                                      redHsv.object().s + amount * sDiff,
                                      redHsv.object().v + amount * vDiff);
-            let flagRadius = 0.02*width;
+            let flagRadius = 0.03*width;
 
             // DISPLAY ZONE PULSE
             s.circle().attr({
@@ -93,9 +93,9 @@ class Map extends Component {
                 fill: '' + color,
                 stroke: 'none'})
                 .animate({
-                    r: (0.08 * width * zone.size + flagRadius),
+                    r: (0.07 * width * zone.size + flagRadius),
                     fill: '' + color.fade(1)},
-                    400);
+                    600);
 
             // DISPLAY FLAG
             let fileName = zone.zone_name.replace(/\s+/g, '-').toLowerCase() + '.png';
